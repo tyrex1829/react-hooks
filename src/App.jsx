@@ -1,33 +1,28 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Counter from "./Counter";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cartItem, setCartItem] = useState([
+    { name: "Item-1", quantity: 0 },
+    { name: "Item-2", quantity: 0 },
+    { name: "Item-3", quantity: 0 },
+    { name: "Item-4", quantity: 0 },
+    { name: "Item-5", quantity: 0 },
+  ]);
 
+  const removeItem = (itemName) => {
+    const updatedCartItems = cartItem.filter((i) => i.name !== itemName);
+    setCartItem(updatedCartItems);
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Shopping cart</h1>
+      {cartItem.map((item, index) => (
+        <Counter key={index} item={item} removeItem={removeItem} />
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
