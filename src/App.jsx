@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Counter from "./Counter";
-import { State } from "./hooks/State";
+import State from "./hooks/State";
+import axios from "axios";
+import Effect from "./hooks/Effect";
 
 function App() {
   // shopping cart code commented
@@ -17,6 +19,15 @@ function App() {
   //   const updatedCartItems = cartItem.filter((i) => i.name !== itemName);
   //   setCartItem(updatedCartItems);
   // };
+
+  const [effect, setEffect] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://sum-server.100xdevs.com/todo?id=" + id).then((res) => {
+      setEffect(res.data.effect);
+    });
+  }, []);
+
   return (
     // <>
     //   <h1>Shopping cart</h1>
@@ -25,7 +36,11 @@ function App() {
     //   ))}
     // </>
     <div>
-      <State />
+      {/* state hook code */}
+      {/* <State /> */}
+      {effect.map((e) => (
+        <Effect key={e.id} title={e.title} description={e.description} />
+      ))}
     </div>
   );
 }
