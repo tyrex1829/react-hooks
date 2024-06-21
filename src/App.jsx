@@ -30,6 +30,9 @@ function App() {
   //   });
   // }, []);
 
+  // todo id code
+  const [buttonId, setButtonId] = useState(1);
+
   return (
     // <>
     //   <h1>Shopping cart</h1>
@@ -50,7 +53,35 @@ function App() {
       )} */}
 
       {/* todo id code */}
-      <Todo id={3} />
+      <button
+        onClick={() => {
+          setButtonId(1);
+        }}
+      >
+        1
+      </button>
+      <button
+        onClick={() => {
+          setButtonId(2);
+        }}
+      >
+        2
+      </button>
+      <button
+        onClick={() => {
+          setButtonId(3);
+        }}
+      >
+        3
+      </button>
+      <button
+        onClick={() => {
+          setButtonId(4);
+        }}
+      >
+        4
+      </button>
+      <Todo id={buttonId} />
     </>
   );
 }
