@@ -5,6 +5,7 @@ import State from "./hooks/State";
 import axios from "axios";
 import Effect from "./hooks/Effect";
 import Todo from "./hooks/Todo";
+import useTodos from "./custom hooks/useTodos";
 
 function App() {
   // shopping cart code commented
@@ -34,17 +35,20 @@ function App() {
   // const [buttonId, setButtonId] = useState(1);
 
   // Memo
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState(1);
+  // const [counter, setCounter] = useState(0);
+  // const [inputValue, setInputValue] = useState(1);
 
-  let count = useMemo(() => {
-    console.log("render");
-    let finalCount = 0;
-    for (let i = 1; i <= inputValue; i++) {
-      finalCount = finalCount + i;
-    }
-    return finalCount;
-  }, [inputValue]);
+  // let count = useMemo(() => {
+  //   console.log("render");
+  //   let finalCount = 0;
+  //   for (let i = 1; i <= inputValue; i++) {
+  //     finalCount = finalCount + i;
+  //   }
+  //   return finalCount;
+  // }, [inputValue]);
+
+  // Custom Hooks
+  const todos = useTodos();
 
   return (
     // <>
@@ -98,26 +102,36 @@ function App() {
     // </>
 
     // useMemo
-    <>
-      <input
-        type="text"
-        placeholder="Find sum from 1 to n"
-        required
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
-      />
-      <h1>
-        Sum from 1 to {inputValue} is {count}
-      </h1>
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-        }}
-      >
-        Counter ({counter})
-      </button>
-    </>
+    // <>
+    //   <input
+    //     type="text"
+    //     placeholder="Find sum from 1 to n"
+    //     required
+    //     onChange={(e) => {
+    //       setInputValue(e.target.value);
+    //     }}
+    //   />
+    //   <h1>
+    //     Sum from 1 to {inputValue} is {count}
+    //   </h1>
+    //   <button
+    //     onClick={() => {
+    //       setCounter(counter + 1);
+    //     }}
+    //   >
+    //     Counter ({counter})
+    //   </button>
+    // </>
+
+    // custom hooks
+    <div>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <h2>{todo.title}</h2>
+          <p>{todo.description}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 
