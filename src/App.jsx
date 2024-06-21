@@ -4,6 +4,7 @@ import Counter from "./Counter";
 import State from "./hooks/State";
 import axios from "axios";
 import Effect from "./hooks/Effect";
+import Todo from "./hooks/Todo";
 
 function App() {
   // shopping cart code commented
@@ -20,13 +21,14 @@ function App() {
   //   setCartItem(updatedCartItems);
   // };
 
-  const [effect, setEffect] = useState([]);
+  // code of effect hook to render all todos not infinitely.
+  // const [effect, setEffect] = useState([]);
 
-  useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todos").then((response) => {
-      setEffect(response.data.todos);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("https://sum-server.100xdevs.com/todos").then((response) => {
+  //     setEffect(response.data.todos);
+  //   });
+  // }, []);
 
   return (
     // <>
@@ -38,13 +40,17 @@ function App() {
     <>
       {/* state hook code */}
       {/* <State /> */}
-      {effect && effect.length > 0 ? (
+      {/* code of effect hook to render all todos not infinitely. */}
+      {/* {effect && effect.length > 0 ? (
         effect.map((e) => (
           <Effect key={e.id} title={e.title} description={e.description} />
         ))
       ) : (
         <p>No data available</p>
-      )}
+      )} */}
+
+      {/* todo id code */}
+      <Todo id={1} />
     </>
   );
 }
