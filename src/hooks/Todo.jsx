@@ -12,8 +12,8 @@ export default function Todo({ id }) {
 
   return (
     <>
-      <h1>{Todo.title}</h1>
-      <h4>{Todo.description}</h4>
+      <h1>{todo.title}</h1>
+      <h4>{todo.description}</h4>
     </>
   );
 }
