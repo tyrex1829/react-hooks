@@ -23,8 +23,8 @@ function App() {
   const [effect, setEffect] = useState([]);
 
   useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todo?id=" + id).then((res) => {
-      setEffect(res.data.effect);
+    axios.get("https://sum-server.100xdevs.com/todos").then((response) => {
+      setEffect(response.data.todos);
     });
   }, []);
 
@@ -35,13 +35,17 @@ function App() {
     //     <Counter key={index} item={item} removeItem={removeItem} />
     //   ))}
     // </>
-    <div>
+    <>
       {/* state hook code */}
       {/* <State /> */}
-      {effect.map((e) => (
-        <Effect key={e.id} title={e.title} description={e.description} />
-      ))}
-    </div>
+      {effect && effect.length > 0 ? (
+        effect.map((e) => (
+          <Effect key={e.id} title={e.title} description={e.description} />
+        ))
+      ) : (
+        <p>No data available</p>
+      )}
+    </>
   );
 }
 
