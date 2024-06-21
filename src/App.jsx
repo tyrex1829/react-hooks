@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./App.css";
 import Counter from "./Counter";
 import State from "./hooks/State";
@@ -37,10 +37,14 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [inputValue, setInputValue] = useState(1);
 
-  let count = 0;
-  for (let i = 1; i <= inputValue; i++) {
-    count = count + i;
-  }
+  let count = useMemo(() => {
+    console.log("render");
+    let finalCount = 0;
+    for (let i = 1; i <= inputValue; i++) {
+      finalCount = finalCount + i;
+    }
+    return finalCount;
+  }, [inputValue]);
 
   return (
     // <>
